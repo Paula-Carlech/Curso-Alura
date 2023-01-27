@@ -1,6 +1,6 @@
 const form = document.querySelector('#novoItem');
 const lista = document.querySelector('#lista');
-const itens = JASON.parse(localStorage("itens")) || [];
+const itens = JSON.parse(localStorage.getItem("itens")) || [];
 
 itens.forEach( (elemento) => {
     criaElemento(elemento);
@@ -12,14 +12,24 @@ form.addEventListener("submit", (evento) => {
     const nome  = evento.target.elements['nome'];
     const quantidade = evento.target.elements['quantidade'];
 
+    const existe = itens.find(elemento => elemento.nome === nome.value);
+
     const itemAtual = {
         "nome": nome.value,
         "quantidade": quantidade.value
     }
 
-    criaElemento(nome.value, quantidade.value);
+    if(existe){
 
-    itens.push(itemAtual);
+        itemAtual.id = existe.id;
+        atualizaElemento(itemAtual);
+        itens[existe.id] = itemAtual;
+    }else{
+
+        itemAtual.id = itens.length;
+        criaElemento(itemAtual);
+        itens.push(itemAtual);
+    }
 
     localStorage.setItem("item", JSON.stringify(itens));
 
@@ -27,15 +37,20 @@ form.addEventListener("submit", (evento) => {
     quantidade.value = "";
 })
 
-function criaElemento(itens){
+function criaElemento(item){
     const novoItem = document.createElement('li');
     novoItem.classList.add("item");
 
     const numeroItem = document.createElement('strong');
-    numeroItem.innerHTML = itens.quantidade;
-
+    numeroItem.innerHTML = item.quantidade;
+    numeroItem.dataset.id = item.id;
     novoItem.appendChild(numeroItem);
-    novoItem.innerHTML += itens.nome;
+
+    novoItem.innerHTML += item.nome;
 
     lista.appendChild(novoItem);
+}
+
+function atualizaElemento(item){
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade;
 }
