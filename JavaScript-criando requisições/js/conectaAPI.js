@@ -1,5 +1,5 @@
 async function listaVideos(){
-    const conexao = await fetch("url do servidor");
+    const conexao = await fetch("http://localhost:3000");
     const conexaoConvertida = await conexao.json();
     
     return conexaoConvertida;
