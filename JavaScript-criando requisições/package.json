@@ -1,21 +1,4 @@
 {
-  "name": "curso-alura",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Paula-Carlech/Curso-Alura.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Paula-Carlech/Curso-Alura/issues"
-  },
-  "homepage": "https://github.com/Paula-Carlech/Curso-Alura#readme",
-  "description": "",
   "dependencies": {
     "json-server": "^0.17.1"
   }
