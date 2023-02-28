@@ -2,14 +2,15 @@ const botaoIniciarCamera = document.querySelector("[data-video-botao]");
 const campoCamera = document.querySelector("[data-camera]");
 const video = document.querySelector("[data-video]");
 const botaoTirarFoto = document.querySelector("[data-tirar-foto]");
-const canvas = docment.querySelector("[data-video-canvas]");
-const mensagem = docment.querySelector("[data-mensagem]");
-const botaoEnviarFoto = document.querySelector("[data-enviar]");
+const canvas = document.querySelector("[data-video-canvas]");
+const mensagem = document.querySelector("[data-mensagem]");
+const botaoEnviarFoto = document.querySelector("[data-enviar]")
 
-let imagemURL = "";
+let imagemURL = '';
 
 botaoIniciarCamera.addEventListener('click', async function () {
-    const iniciarVideo = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    const iniciarVideo = await navigator.mediaDevices
+        .getUserMedia({ video: true, audio: false });
 
     botaoIniciarCamera.style.display = "none";
     campoCamera.style.display = "block";
@@ -26,13 +27,13 @@ botaoTirarFoto.addEventListener('click', function () {
     mensagem.style.display = "block";
 });
 
-botaoEnviarFoto.addEventListener("click", () => {
+botaoEnviarFoto.addEventListener('click', () => {
     const receberDadosExistentes = localStorage.getItem("cadastro");
-    const converterRetorno = JSON.parse(receberDadosExistentes);
+    const converteRetorno = JSON.parse(receberDadosExistentes);
 
-    converterRetorno.imagem = imagemURL;
+    converteRetorno.imagem = imagemURL;
 
-    localStorage.setItem('cadastro', JSON.stringify(converterRetorno));
+    localStorage.setItem('cadastro', JSON.stringify(converteRetorno))
 
-    window.location.href = './abrir-conta-form-3.html';
+    window.location.href = '../pages/abrir-conta-form-3.html';
 })
